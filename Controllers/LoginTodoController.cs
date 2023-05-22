@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OfficeAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using OfficeAPI.Models;
 
 namespace OfficeAPI.Controllers
 {
@@ -13,17 +14,17 @@ namespace OfficeAPI.Controllers
             this.newLoginContext = newLoginContext;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Login")]
-        public async Task<IActionResult> Login([FromQuery] string username, [FromQuery] string password)
+        public async Task<IActionResult> Login([FromBody] LoginItemTodo loginItemTodo)
         { 
-            var loginItem = await newLoginContext.LoginItems.SingleOrDefaultAsync(item => item.Username == username);
+            var loginItem = await newLoginContext.LoginItems.SingleOrDefaultAsync(item => item.Username == loginItemTodo.Username);
 
             if (loginItem != null)
             {
-                if (loginItem.Password == password)
+                if (loginItem.Password == loginItemTodo.Password)
                 {
-                    return Ok();
+                    return Ok("Welcome");
                 }
             }
             return NotFound();
