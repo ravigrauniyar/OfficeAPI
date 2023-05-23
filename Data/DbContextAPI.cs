@@ -5,10 +5,9 @@ namespace OfficeAPI.Data
 {
     public class DbContextAPI : DbContext
     {
-        public DbContextAPI(DbContextOptions<DbContextAPI> options, ILogger<DbContextAPI> logger) : base(options)
+        public DbContextAPI(DbContextOptions<DbContextAPI> options) : base(options)
         {
         }
         public DbSet<ItemTodo> ItemTodos { get; set; }
-
     }
 }

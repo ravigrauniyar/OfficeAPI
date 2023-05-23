@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeAPI.Data;
 using OfficeAPI.Models;
 using OfficeAPI.Models.Domain;
 
-
 namespace OfficeAPI.Controllers
 {
     [ApiController]
     [Route("todos/")]
-
+    [Authorize]
     public class OfficeAPIController : Controller
     {
         private readonly DbContextAPI newItemContext;
